@@ -78,7 +78,7 @@ def generate_question(path):
     for i in my_feature_list:
         sentence = f"Does the person described in the case have {i} symptoms? Do you think it is serious?"
         list_sentence = [sentence]
-        retrieval = retrieval_info(list_sentence, '/Users/jmy/Desktop/ai_for_health_final/', 1)
+        retrieval = retrieval_info(list_sentence, '/content/HealthLLM/', 1)
         question.append(sentence)
         related_work.append(retrieval[0])
         print(retrieval[0])
@@ -94,7 +94,7 @@ def count_subfolders(folder_path):
         if root != folder_path:
             subfolder_count += 1
 
-    basepath = '/Users/jmy/Desktop/ai_for_health_final/dataset_folder/health_report_'
+    basepath = '/content/HealthLLM/dataset_folder/health_report_'
     for i in range(subfolder_count):
         path_rr = basepath+str({i})
         subfolder_paths.append(path_rr)
@@ -125,9 +125,9 @@ if __name__ == '__main__':
 
 
     openai.api_key = os.environ.get("OPENAI_API_KEY")
-    path = '/Users/jmy/Desktop/ai_for_health_final/label and feature/input_feature.txt'
+    path = '/content/HealthLLM/label and feature/input_feature.txt'
     question, related_work, features_list = generate_question(path)
-    folder_path = '/Users/jmy/Desktop/ai_for_health_final/dataset_folder'
+    folder_path = '/content/HealthLLM/dataset_folder'
     list = load_doc(folder_path, question, related_work)
 
     with open('training/train.txt', 'w') as file:
